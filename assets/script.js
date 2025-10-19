@@ -159,5 +159,43 @@
   // Also run on DOMContentLoaded as a fallback (if images cache quickly)
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(positionOrbit, 20);
+    initAlmaMaterCarousel();
   });
+
+   // Alma Mater Carousel
+  function initAlmaMaterCarousel() {
+    const almaMaterLines = [
+      "Where the Blue Ridge yawns its greatness;",
+      "Where the Tigers play;",
+      "Here the sons of dear Old Clemson,",
+      "Reign supreme alway.",
+      "We will dream of great conquests,",
+      "For our past is grand,",
+      "And her sons have fought and conquered,",
+      "Every foreign land.",
+      "Where the mountains smile in grandeur,",
+      "O'er the hill and dale;",
+      "Here the Tiger lair is nestling,",
+      "Swept by storm and gale.",
+      "We are brothers strong in manhood,",
+      "For we work and strive;",
+      "And our Alma Mater reigneth Forever in our lives."
+    ];
+
+    const carouselText = document.querySelector('.carousel-text');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      carouselText.classList.remove('active');
+      
+      setTimeout(() => {
+        carouselText.textContent = almaMaterLines[currentIndex];
+        carouselText.classList.add('active');
+        currentIndex = (currentIndex + 1) % almaMaterLines.length;
+      }, 500);
+    }
+
+    updateCarousel(); // Initial display
+    setInterval(updateCarousel, 5000); // Change every 5 seconds
+  }
 })();
